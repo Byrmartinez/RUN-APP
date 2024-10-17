@@ -1,0 +1,23 @@
+{
+  "name": "runapp",
+  "version": "1.0.0",
+  "description": "PROYECTO CAPSTONE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Byrmartinez/RUN-APP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Byrmartinez/RUN-APP/issues"
+  },
+  "homepage": "https://github.com/Byrmartinez/RUN-APP#readme",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
