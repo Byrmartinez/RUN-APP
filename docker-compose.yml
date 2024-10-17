@@ -1,0 +1,12 @@
+services:
+  dbserver:
+    image: postgres:15-alpine
+    volumes:
+      - ./postgres/dbdata:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: 999solutions
+      POSTGRES_PASSWORD: 999solutions
+      POSTGRES_DB: apirunapp
+    ports:
+      - "5431:5432"
