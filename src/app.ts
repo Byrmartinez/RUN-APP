@@ -1,12 +1,12 @@
 import express from 'express'
 import { NextFunction, Request, Response } from 'express'
-import { ExpressItemClaseRouter } from '../src/Backoffice/Admin/ItemClase/Infrastructure/ExpressItemClaseRouter'
-import { ExpressItemRouter } from '../src/Backoffice/Admin/Item/Infrastructure/ExpressItemRouter'
+import { ExpressItemClaseRouter } from './BackOffice/Usuario/ItemClase/Infrastructure/ExpressItemClaseRouter'
+import { ExpressItemRouter } from './BackOffice/Usuario/Item/Infrastructure/ExpressItemRouter'
 import cors from 'cors'
-import { ExpressSucursalRouter } from './Backoffice/Admin/Sucursal/Infrastructure/ExpressSucursalRouter'
-import { ExpressItemCodigoBarraRouter } from './Backoffice/Admin/ItemCodigoBarra/Infrastructure/ExpressItemCodigoBarraRouter'
-import { ExpressClienteRouter } from './Backoffice/Admin/Cliente/Infrastructure/ExpressClienteRouter'
-import { ExpressProveedorRouter } from './Backoffice/Admin/Proveedor/Infrastructure/ExpressProveedorRouter'
+import { ExpressSucursalRouter } from './BackOffice/Usuario/Sucursal/Infrastructure/ExpressSucursalRouter'
+import { ExpressItemCodigoBarraRouter } from './BackOffice/Usuario/ItemCodigoBarra/Infrastructure/ExpressItemCodigoBarraRouter'
+import { ExpressClienteRouter } from './BackOffice/Usuario/Cliente/Infrastructure/ExpressClienteRouter'
+import { ExpressProveedorRouter } from './BackOffice/Usuario/Proveedor/Infrastructure/ExpressProveedorRouter'
 
 
 
