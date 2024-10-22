@@ -3,9 +3,10 @@ CREATE TABLE Usuario (
     "id_usuario" SERIAL PRIMARY KEY,
     "nombre" VARCHAR(100) NOT NULL,
     "email" VARCHAR(100) NOT NULL UNIQUE,
-    "contraseña" VARCHAR(255) NOT NULL,
+    "password" VARCHAR(255) NOT NULL,
+    "telefono" VARCHAR(255) NOT NULL,
     "fecha_creacion" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    "activo" BOOLEAN DEFAULT TRUE,
+    "estado" BOOLEAN DEFAULT TRUE,
     "id_rol" INT REFERENCES Rol("id_rol") -- Llave foránea a la tabla Rol
 );
 
