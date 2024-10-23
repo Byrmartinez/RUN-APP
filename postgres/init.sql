@@ -1,9 +1,9 @@
 -- Tabla Usuario (general)
 CREATE TABLE Usuario (
     "id_usuario" SERIAL PRIMARY KEY,
-    "nombre" VARCHAR(100) NOT NULL,
+    "nombre" VARCHAR(20) NOT NULL,
     "email" VARCHAR(100) NOT NULL UNIQUE,
-    "password" VARCHAR(255) NOT NULL,
+    "password" VARCHAR(8) NOT NULL,
     "telefono" VARCHAR(255) NOT NULL,
     "fecha_creacion" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "estado" BOOLEAN DEFAULT TRUE,

@@ -1,13 +1,8 @@
 import express from 'express'
 import { NextFunction, Request, Response } from 'express'
-import { ExpressItemClaseRouter } from './BackOffice/Usuario/ItemClase/Infrastructure/ExpressItemClaseRouter'
-import { ExpressItemRouter } from './BackOffice/Usuario/Item/Infrastructure/ExpressItemRouter'
 import cors from 'cors'
-import { ExpressSucursalRouter } from './BackOffice/Usuario/Sucursal/Infrastructure/ExpressSucursalRouter'
-import { ExpressItemCodigoBarraRouter } from './BackOffice/Usuario/ItemCodigoBarra/Infrastructure/ExpressItemCodigoBarraRouter'
-import { ExpressClienteRouter } from './BackOffice/Usuario/Cliente/Infrastructure/ExpressClienteRouter'
-import { ExpressProveedorRouter } from './BackOffice/Usuario/Proveedor/Infrastructure/ExpressProveedorRouter'
 
+import { ExpressUsuarioRouter } from './BackOffice/Usuario/Infrastructure/ExpressUsuarioRouter'
 
 
 // Configuración de CORS
@@ -22,12 +17,7 @@ app.use(cors({
 
 }))
 
-app.use('/item-clases', ExpressItemClaseRouter)
-app.use('/items', ExpressItemRouter)
-app.use('/item-codigo-barras', ExpressItemCodigoBarraRouter)
-app.use('/clientes', ExpressClienteRouter)
-app.use('/sucursales', ExpressSucursalRouter)
-app.use('/proveedores', ExpressProveedorRouter)
+app.use('/usuarios', ExpressUsuarioRouter)
 
 app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {

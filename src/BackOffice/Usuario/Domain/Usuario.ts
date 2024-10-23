@@ -3,59 +3,72 @@ import { Email } from "./ValueObjects/Email"
 import { Password } from "./ValueObjects/Password"
 import { Telefono } from "./ValueObjects/Telefono"
 import { Estado } from "./ValueObjects/Estado"
-import { IdRol } from "./ValueObjects/idRol"
-
+import { IdRol } from "./ValueObjects/IdRol"
+import { UsuarioId } from "./ValueObjects/UsuarioId"
+import { FechaCreacion } from "./ValueObjects/fechaCreacion"
 
 export class Usuario {
+    id: UsuarioId
     nombre: Nombre
     email: Email
     password: Password
     telefono: Telefono
     estado: Estado
     idRol: IdRol
+    fechaCreacion: FechaCreacion
 
 
     private constructor(
+        id: UsuarioId,
         nombre: Nombre,
         email: Email,
         password: Password,
         telefono: Telefono,
         estado: Estado,
-        idRol: IdRol
+        idRol: IdRol,
+        fechaCreacion: FechaCreacion
     ) {
+        this.id = id
         this.nombre = nombre
         this.email = email
         this.password = password
         this.telefono = telefono
         this.estado = estado
         this.idRol = idRol
+        this.fechaCreacion = fechaCreacion
     }
     public static create(
+        id: string,
         nombre: string,
         email: string,
         password: string,
         telefono: string,
         estado: boolean,
-        idRol: number
+        idRol: number,
+        fechaCreacion: Date
     ): Usuario {
         return new Usuario(
+            new UsuarioId(id),
             new Nombre(nombre),
             new Email(email),
             new Password(password),
             new Telefono(telefono),
             new Estado(estado),
-            new IdRol(idRol)
+            new IdRol(idRol),
+            new FechaCreacion(fechaCreacion)
 
         )
     }
     public mapToDTO() {
         return {
+            id: this.id.value,
             nombre: this.nombre.value,
             email: this.email.value,
             password: this.password.value,
             telefono: this.telefono.value,
             estado: this.estado.value,
-            idRol: this.idRol.value
+            idRol: this.idRol.value,
+            fechaCreacion: this.fechaCreacion.value
         }
     }
 }
