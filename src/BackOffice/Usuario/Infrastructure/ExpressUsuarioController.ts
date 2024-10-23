@@ -10,6 +10,7 @@ export class ExpressUsuarioController {
     async createUsuario(err: unknown, req: Request, res: Response, next: NextFunction) {
 
         try {
+            console.log('en el try')
             const usuario: CreateUsuarioDTO = req.body
             const newUsuario = await ServicesContainer.usuario.create.execute(usuario)
             return res.status(201).json(newUsuario.mapToDTO())

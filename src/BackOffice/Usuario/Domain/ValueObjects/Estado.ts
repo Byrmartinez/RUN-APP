@@ -1,14 +1,17 @@
 export class Estado {
-    value: boolean;
+    value: string;
 
-    constructor(value: boolean) {
+    constructor(value: string) {
         this.value = value;
         this.ensureIsValid();
     }
 
     private ensureIsValid() {
-        if (typeof this.value !== 'boolean') {
-            throw new Error('El estado debe ser un valor booleano.');
+        if (!this.value || this.value.trim().length === 0) {
+            throw new Error('Estado no puede estar vacio.')
+        }
+        if (this.value.length > 8) {
+            throw new Error('Estado no puede tener mas de 25 caracteres')
         }
     }
 

@@ -19,11 +19,11 @@ export class PostgresUsuarioRepository implements UsuarioRepository {
 
 
         const query = `
-            INSERT INTO usuario (id, nombre, email, password, telefono, estado, idRol, fechaCreacion)
+            INSERT INTO usuario (id, nombre, email, password, telefono, estado, id_rol, fecha_creacion )
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         `
         // const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, 10)
+        //const hashedPassword = await bcrypt.hash(password, 10)
 
         const values = [id, nombre, email, password, telefono, estado, idRol, fechaCreacion]
         await this.client.query(query, values)
@@ -88,8 +88,8 @@ export class PostgresUsuarioRepository implements UsuarioRepository {
     async update(usuario: Usuario): Promise<void> {
         const { id, nombre, email, password, telefono, estado, idRol, fechaCreacion } = usuario.mapToDTO()
         const query = `
-            UPDATE users
-            SET nombre = $2, email = $3, password = $4, telefono = $5, estado = $6, idRol = $7, fechaCreacion = $8
+            UPDATE usuario
+            SET nombre = $2, email = $3, password = $4, telefono = $5, estado = $6, id_rol = $7, fecha_creacion = $8
             WHERE id = $1
         `
         const values = [id, nombre, email, password, telefono, estado, idRol, fechaCreacion]

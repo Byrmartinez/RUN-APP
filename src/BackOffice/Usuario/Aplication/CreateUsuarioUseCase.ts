@@ -8,9 +8,11 @@ export interface CreateUsuarioDTO {
     email: string,
     password: string,
     telefono: string,
-    estado: boolean,
-    idRol: number
+    estado: string,
+    idRol: string,
+
 }
+console.log("oeee")
 
 export class CreateUsuarioUseCase {
     private repository: UsuarioRepository

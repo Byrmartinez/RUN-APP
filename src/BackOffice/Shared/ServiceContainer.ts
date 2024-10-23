@@ -11,22 +11,22 @@ import { PostgresUsuarioRepository } from '../Usuario/Infrastructure/PostgresUsu
 const postgresConnectionData = {
     host: 'localhost',
     port: 5431,
-    database: 'emailcontroller',
-    user: 'proventum',
-    password: 'proventum',
+    database: 'apirunapp',
+    user: '999solutions',
+    password: '999solutions'
 }
 
-const userRepository = new PostgresUsuarioRepository(postgresConnectionData)
+const usuarioRepository = new PostgresUsuarioRepository(postgresConnectionData)
 
 
 export const ServicesContainer = {
     usuario: {
-        getAll: new GetAllUsuariosUseCase(userRepository),
-        getOneById: new GetUsuarioByIdUseCase(userRepository),
-        getOneByEmail: new GetUsuarioByEmailUseCase(userRepository),
-        create: new CreateUsuarioUseCase(userRepository),
-        update: new UpdateUsuarioUseCase(userRepository),
-        delete: new DeleteUsuarioUseCase(userRepository)
+        getAll: new GetAllUsuariosUseCase(usuarioRepository),
+        getOneById: new GetUsuarioByIdUseCase(usuarioRepository),
+        getOneByEmail: new GetUsuarioByEmailUseCase(usuarioRepository),
+        create: new CreateUsuarioUseCase(usuarioRepository),
+        update: new UpdateUsuarioUseCase(usuarioRepository),
+        delete: new DeleteUsuarioUseCase(usuarioRepository)
     }
 
 }

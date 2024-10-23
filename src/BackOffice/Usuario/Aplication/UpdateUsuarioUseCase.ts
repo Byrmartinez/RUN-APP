@@ -24,8 +24,8 @@ export class UpdateUsuarioUseCase {
             email?: string,
             password?: string,
             telefono?: string,
-            estado?: boolean,
-            idRol?: number
+            estado?: string,
+            idRol?: string
         }
     ): Promise<void> {
 

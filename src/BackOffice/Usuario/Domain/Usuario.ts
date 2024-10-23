@@ -43,8 +43,8 @@ export class Usuario {
         email: string,
         password: string,
         telefono: string,
-        estado: boolean,
-        idRol: number,
+        estado: string,
+        idRol: string,
         fechaCreacion: Date
     ): Usuario {
         return new Usuario(
