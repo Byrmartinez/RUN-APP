@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 
 import { ExpressUsuarioRouter } from './BackOffice/Usuario/Infrastructure/ExpressUsuarioRouter'
+import { ExpressRolRouter } from './BackOffice/Rol/Infrastructure/ExpressRolRouter'
 
 
 // Configuración de CORS
@@ -18,6 +19,7 @@ app.use(cors({
 }))
 
 app.use('/usuarios', ExpressUsuarioRouter)
+app.use('/roles', ExpressRolRouter)
 
 app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {

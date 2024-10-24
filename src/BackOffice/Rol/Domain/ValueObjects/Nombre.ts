@@ -1,19 +1,19 @@
-
-export class IdRol {
+export class Nombre {
     value: string
 
     constructor(value: string) {
         this.value = value
         console.log(value)
+
         this.ensureIsValid()
     }
 
     private ensureIsValid() {
 
-        // TODO: Debe ser un UUID
-        if (this.value && this.value.length > 80)
-            throw new Error('IdRol must be at least 5 characters long')
-        console.log(this.value.length)
-    }
+        if (this.value.length > 25)
+            throw new Error('Nombre no puede tener mas de 25 caracteres')
 
+        console.log(this.value.length)
+
+    }
 }
