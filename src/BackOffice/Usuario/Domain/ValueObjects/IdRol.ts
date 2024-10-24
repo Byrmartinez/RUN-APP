@@ -1,19 +1,16 @@
-// domain/Usuario/valueobjects/IdRol.ts
 
 export class IdRol {
-    value: string;
+    value: string
 
     constructor(value: string) {
-        this.value = value;
-        this.ensureIsValid();
+        this.value = value
+        console.log(this.value)
+        this.ensureIsValid()
     }
 
     private ensureIsValid() {
-        if (!this.value || this.value.trim().length === 0) {
-            throw new Error('idRol no puede estar vacio.')
-        }
-        if (this.value.length > 2) {
-            throw new Error('idRol no puede tener mas de 2 caracteres')
+        if (this.value !== "1" && this.value !== "2" && this.value !== "3") {
+            throw new Error('idRol puede ser 1, 2 o 3');
         }
     }
 }

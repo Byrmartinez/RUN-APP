@@ -11,6 +11,7 @@ export interface CreateUsuarioDTO {
     estado: string,
     idRol: string,
 
+
 }
 console.log("oeee")
 

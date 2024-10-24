@@ -5,7 +5,7 @@ import { Telefono } from "./ValueObjects/Telefono"
 import { Estado } from "./ValueObjects/Estado"
 import { IdRol } from "./ValueObjects/IdRol"
 import { UsuarioId } from "./ValueObjects/UsuarioId"
-import { FechaCreacion } from "./ValueObjects/fechaCreacion"
+import { FechaCreacion } from "./ValueObjects/FechaCreacion"
 
 export class Usuario {
     id: UsuarioId
@@ -60,6 +60,8 @@ export class Usuario {
         )
     }
     public mapToDTO() {
+        console.log('entrando al mapeo')
+
         return {
             id: this.id.value,
             nombre: this.nombre.value,

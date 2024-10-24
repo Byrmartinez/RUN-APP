@@ -7,7 +7,7 @@ import { UsuarioAlreadyExists } from '../Domain/Exceptions/UsuarioAlreadyExists'
 
 export class ExpressUsuarioController {
 
-    async createUsuario(err: unknown, req: Request, res: Response, next: NextFunction) {
+    async createUsuario(req: Request, res: Response, next: NextFunction) {
 
         try {
             console.log('en el try')
@@ -15,9 +15,9 @@ export class ExpressUsuarioController {
             const newUsuario = await ServicesContainer.usuario.create.execute(usuario)
             return res.status(201).json(newUsuario.mapToDTO())
         } catch (error) {
-            if (error instanceof UsuarioParametersNotValid) {
+            /*if (error instanceof UsuarioParametersNotValid) {
                 return res.status(400).json({ message: error.message })
-            }
+            }*/
 
             if (error instanceof UsuarioAlreadyExists) {
                 return res.status(400).json({ message: error.message })
@@ -41,20 +41,25 @@ export class ExpressUsuarioController {
         const { id, email } = req.query
 
         if (id) {
-            console.log('get by id')
+            console.log('get by id akiiii')
             if (!id) {
+                console.log('no hay id')
                 res.status(400).json({ message: 'Id is required' })
                 return
             }
 
             if (typeof id !== 'string') {
+                console.log('diferente de estring')
                 return res.status(400).json({ message: 'Id format incorrect' })
             }
 
-            const user = await ServicesContainer.usuario.getOneById.execute(id)
-            if (user) {
-                return res.status(200).json(user.mapToDTO())
+            console.log('ejecutado getonebyid')
+            const usuario = await ServicesContainer.usuario.getOneById.execute(id)
+            if (usuario) {
+                console.log('llendo a mapear usuario')
+                return res.status(200).json(usuario.mapToDTO())
             } else {
+                console.log('ejecutado else')
                 return res.status(404).json({ message: 'Not found' })
             }
         }
@@ -62,11 +67,13 @@ export class ExpressUsuarioController {
         if (email) {
             console.log('get by email')
             if (!email) {
+                console.log('distinto email')
                 res.status(400).json({ message: 'Email is required' })
                 return
             }
 
             if (typeof email !== 'string') {
+                console.log('get by sring')
                 return res.status(400).json({ message: 'Email format incorrect' })
             }
 

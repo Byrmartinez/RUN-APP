@@ -4,13 +4,12 @@ export class Telefono {
 
     constructor(value: string) {
         this.value = value
+        console.log(this.value)
         this.ensureIsValid()
     }
 
     private ensureIsValid() {
-        if (!this.value || this.value.trim().length === 0) {
-            throw new Error('Telefono no puede estar vacio.')
-        }
+
 
         if (!this.value.startsWith('+')) {
             throw new Error('Debe comenzar con +')
@@ -19,6 +18,7 @@ export class Telefono {
         if (this.value.length !== 12) {
             throw new Error('debe contener 12 caracteres')
         }
+        console.log(this.value.length)
 
     }
 }
