@@ -14,6 +14,14 @@ import { GetRolByNombreUseCase } from '../Rol/Aplication/GetRolByNombreUseCase'
 import { UpdateRolUseCase } from '../Rol/Aplication/UpdateRolUseCase'
 import { DeleteRolUseCase } from '../Rol/Aplication/DeleteRolUseCase'
 import { PostgresRolRepository } from '../Rol/Infrastructure/PostgresRolRepository'
+/*datosPyme*/
+import { CreateDatosPymeUseCase } from '../DatosPyme/Aplication/CreateDatosPymeUseCase'
+import { GetAllDatosPymesUseCase } from '../DatosPyme/Aplication/GetAllDatosPymesUseCase'
+import { GetDatosPymeByIdUseCase } from '../DatosPyme/Aplication/GetDastosPymeByIdUseCase'
+import { GetDatosPymeByEmailUseCase } from '../DatosPyme/Aplication/GetDatosPymeByEmailUseCase'
+import { UpdateDatosPymeUseCase } from '../DatosPyme/Aplication/UpdateDatosPymeUseCase'
+import { DeleteDatosPymeUseCase } from '../DatosPyme/Aplication/DeleteDatosPymeUseCase'
+import { PostgresDatosPymeRepository } from '../DatosPyme/Infrastructure/PostgresDatosPymeRepository'
 
 
 const postgresConnectionData = {
@@ -26,6 +34,7 @@ const postgresConnectionData = {
 
 const usuarioRepository = new PostgresUsuarioRepository(postgresConnectionData)
 const rolRepository = new PostgresRolRepository(postgresConnectionData)
+const datosPymeRepository = new PostgresDatosPymeRepository(postgresConnectionData)
 
 export const ServicesContainer = {
     usuario: {
@@ -43,6 +52,14 @@ export const ServicesContainer = {
         create: new CreateRolUseCase(rolRepository),
         update: new UpdateRolUseCase(rolRepository),
         delete: new DeleteRolUseCase(rolRepository)
+    },
+    datosPyme: {
+        getAll: new GetAllDatosPymesUseCase(datosPymeRepository),
+        getOneById: new GetDatosPymeByIdUseCase(datosPymeRepository),
+        getOneByNombre: new GetDatosPymeByEmailUseCase(datosPymeRepository),
+        create: new CreateDatosPymeUseCase(datosPymeRepository),
+        update: new UpdateDatosPymeUseCase(datosPymeRepository),
+        delete: new DeleteDatosPymeUseCase(datosPymeRepository)
     }
 
 }

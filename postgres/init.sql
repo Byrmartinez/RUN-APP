@@ -23,9 +23,8 @@ CREATE TABLE "datos_pyme" (
     "nombre" VARCHAR(250) NOT NULL,
     "email" VARCHAR(250) NOT NULL,
     "plan" VARCHAR(250) NOT NULL,
-    "saldo_2km" INT NOT NULL,
-    "saldo_4km" INT NOT NULL,
-    "saldo_5km" INT NOT NULL,
+    "saldo" INT NOT NULL,
+    "deuda" INT NOT NULL,
     PRIMARY KEY ("id")
 );
 CREATE TABLE "datos_rider" (
