@@ -5,6 +5,7 @@ export class UsuarioId {
     constructor(value: string) {
         this.value = value
         console.log(value)
+        console.log("value del usuario")
         this.ensureIsValid()
     }
 

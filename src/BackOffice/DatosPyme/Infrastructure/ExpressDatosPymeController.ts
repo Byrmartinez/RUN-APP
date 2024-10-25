@@ -12,6 +12,7 @@ export class ExpressDatosPymeController {
         try {
             console.log('en el try')
             const datosPyme: CreateDatosPymeDTO = req.body
+            console.log(datosPyme)
             const newDatosPyme = await ServicesContainer.datosPyme.create.execute(datosPyme)
             return res.status(201).json(newDatosPyme.mapToDTO())
         } catch (error) {

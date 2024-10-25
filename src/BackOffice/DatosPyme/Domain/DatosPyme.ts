@@ -55,9 +55,11 @@ export class DatosPyme {
         )
     }
     public mapToDTO() {
+
         console.log('entrando al mapeo')
 
         return {
+
             id: this.id.value,
             idUsuario: this.idUsuario.value,
             nombre: this.nombre.value,
@@ -66,5 +68,6 @@ export class DatosPyme {
             saldo: this.saldo.value,
             deuda: this.deuda.value
         }
+
     }
 }

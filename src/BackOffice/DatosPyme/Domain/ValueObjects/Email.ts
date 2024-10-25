@@ -3,6 +3,7 @@ export class Email {
 
     constructor(value: string) {
         this.value = value
+        console.log("aquiestamos")
         console.log(this.value)
         this.ensureIsValid()
     }

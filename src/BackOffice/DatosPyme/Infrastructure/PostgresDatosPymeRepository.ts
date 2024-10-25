@@ -16,16 +16,18 @@ export class PostgresDatosPymeRepository implements DatosPymeRepository {
 
     async create(datosPyme: DatosPyme): Promise<DatosPyme> {
         const { id, idUsuario, nombre, email, plan, saldo, deuda } = datosPyme.mapToDTO()
-
+        console.log("mapeando")
+        console.log(datosPyme)
 
         const query = `
-            INSERT INTO datos_pyme (id, id_usuario, nombre, email, plan, saldo, deuda )
+            INSERT INTO datos_pyme (id, id_usuario, nombre, email, plan, saldo, deuda)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
         `
         // const salt = await bcrypt.genSalt(10)
         //const hashedPassword = await bcrypt.hash(password, 10)
 
-        const values = [id, nombre, email, plan, saldo, deuda]
+        const values = [id, idUsuario, nombre, email, plan, saldo, deuda]
+        console.log("aquien el create de postgres")
         await this.client.query(query, values)
         return datosPyme
     }

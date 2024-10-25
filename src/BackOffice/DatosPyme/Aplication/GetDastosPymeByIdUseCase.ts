@@ -12,11 +12,11 @@ export class GetDatosPymeByIdUseCase {
     async execute(id: string): Promise<DatosPyme | null> {
         console.log('entrando a la ejecucion')
         // Usa el Value Object para manejar el ID de usuario
-        const datosPymeId = new IdDatosPyme(id)
+        const idDatosPyme = new IdDatosPyme(id)
         console.log('manejando el id')
 
         // Retorna el usuario
-        return await this.repository.getOneById(datosPymeId)
+        return await this.repository.getOneById(idDatosPyme)
 
     }
 }

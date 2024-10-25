@@ -9,7 +9,7 @@ export interface CreateDatosPymeDTO {
     email: string,
     plan: string,
     saldo: number,
-    deuda: number
+    deuda: number,
 
 
 }
@@ -28,9 +28,10 @@ export class CreateDatosPymeUseCase {
 
         // Se extraen los valores del DTO
         const { idUsuario, nombre, email, plan, saldo, deuda } = createDatosPymeDTO
-
+        console.log(nombre)
         // Usa el repositorio para validar que el usuario no exista by email
         const datosPymeEmail = new Email(email)
+        console.log(datosPymeEmail)
         const datosPyme = await this.repository.getOneByEmail(datosPymeEmail)
 
         // Si el usuario existe, lanza un error
@@ -38,10 +39,10 @@ export class CreateDatosPymeUseCase {
 
         // Se utiliza un método estático de la entidad para crear una nueva instancia
         const newDatosPyme = DatosPyme.create(crypto.randomUUID(), idUsuario, nombre, email, plan, saldo, deuda)
-
+        console.log(newDatosPyme)
         // Se llama al repositorio para persistir el nuevo usuario
         await this.repository.create(newDatosPyme)
-
+        console.log(newDatosPyme)
         return newDatosPyme
     }
 }
