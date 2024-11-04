@@ -9,3 +9,5 @@ ExpressUsuarioRouter.get('/', controller.getUsuarios)
 ExpressUsuarioRouter.post('/', controller.createUsuario)
 ExpressUsuarioRouter.put('/', controller.updateUsuario)
 ExpressUsuarioRouter.delete('/:id', controller.deleteUsuario)
+// Ruta para el inicio de sesión
+ExpressUsuarioRouter.post('/login', controller.loginUsuario)

@@ -6,6 +6,7 @@ import { Estado } from "./ValueObjects/Estado"
 import { IdRol } from "./ValueObjects/IdRol"
 import { UsuarioId } from "./ValueObjects/UsuarioId"
 import { FechaCreacion } from "./ValueObjects/FechaCreacion"
+import bcrypt from 'bcrypt'
 
 export class Usuario {
     id: UsuarioId
@@ -58,6 +59,9 @@ export class Usuario {
             new FechaCreacion(fechaCreacion)
 
         )
+    }
+    async verifyPassword(password: string): Promise<boolean> {
+        return await bcrypt.compare(password, this.password.value); // Compara la contraseña ingresada con la almacenada
     }
     public mapToDTO() {
         console.log('entrando al mapeo')

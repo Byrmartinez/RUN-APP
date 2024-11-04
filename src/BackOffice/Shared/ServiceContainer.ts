@@ -6,6 +6,7 @@ import { GetUsuarioByEmailUseCase } from '../Usuario/Aplication/GetUsuarioByEmai
 import { UpdateUsuarioUseCase } from '../Usuario/Aplication/UpdateUsuarioUseCase'
 import { DeleteUsuarioUseCase } from '../Usuario/Aplication/DeleteUsuarioUseCase'
 import { PostgresUsuarioRepository } from '../Usuario/Infrastructure/PostgresUsuarioRepository'
+import { AuthenticateUsuarioUseCase } from '../Usuario/Aplication/AuthenticateUsuarioUseCase'
 /*Rol*/
 import { CreateRolUseCase } from '../Rol/Aplication/CreateRolUseCase'
 import { GetAllRolesUseCase } from '../Rol/Aplication/GetAllRolesUseCase'
@@ -76,7 +77,8 @@ export const ServicesContainer = {
         getOneByEmail: new GetUsuarioByEmailUseCase(usuarioRepository),
         create: new CreateUsuarioUseCase(usuarioRepository),
         update: new UpdateUsuarioUseCase(usuarioRepository),
-        delete: new DeleteUsuarioUseCase(usuarioRepository)
+        delete: new DeleteUsuarioUseCase(usuarioRepository),
+        authenticate: new AuthenticateUsuarioUseCase(usuarioRepository)
     },
     rol: {
         getAll: new GetAllRolesUseCase(rolRepository),

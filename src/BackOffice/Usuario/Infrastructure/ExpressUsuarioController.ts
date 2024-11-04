@@ -3,7 +3,7 @@ import { CreateUsuarioDTO } from '../Aplication/CreateUsuarioUseCase'
 import { ServicesContainer } from '../../Shared/ServiceContainer'
 import { UsuarioParametersNotValid } from '../Domain/Exceptions/UsuarioParameterNotValid'
 import { UsuarioAlreadyExists } from '../Domain/Exceptions/UsuarioAlreadyExists'
-
+import { Email } from '../Domain/ValueObjects/Email'
 
 export class ExpressUsuarioController {
 
@@ -89,6 +89,36 @@ export class ExpressUsuarioController {
         const usuarios = await ServicesContainer.usuario.getAll.execute()
         return res.status(200).json(usuarios.map(usuario => usuario.mapToDTO()))
 
+    }
+    async loginUsuario(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { email, password } = req.body;
+
+            if (!email || !password) {
+                return res.status(400).json({ message: 'Email y password son requeridos' });
+            }
+
+            // Llamada al servicio de autenticación
+            const usuario = await ServicesContainer.usuario.authenticate.execute(new Email(email).value, password);
+
+            if (usuario) {
+                console.log(usuario)
+                console.log(`Estado del usuario: ${usuario.estado}`)
+                console.log('Usuario completo:', usuario);
+                if (String(usuario.estado.value) === "activo") {
+
+                    return res.status(200).json(usuario.mapToDTO());
+                } else {
+                    console.log(String(usuario.estado))
+                    return res.status(403).json({ message: 'Usuario inactivo' });
+                }
+            } else {
+                return res.status(401).json({ message: 'Credenciales incorrectas' });
+            }
+        } catch (error) {
+            console.error('Error en el login:', error);
+            return res.status(500).json({ message: 'Error interno del servidor' });
+        }
     }
 
 }
