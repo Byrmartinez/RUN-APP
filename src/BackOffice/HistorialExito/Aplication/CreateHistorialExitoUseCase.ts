@@ -5,6 +5,7 @@ import { HistorialExitoAlreadyExists } from '../Domain/Exceptions/HistorialExito
 export interface CreateHistorialExitoDTO {
 
     envioId: string,
+    usuarioId: string,
     riderId: string,
     calificacion: number,
     comentario: string,
@@ -26,11 +27,11 @@ export class CreateHistorialExitoUseCase {
 
 
         // Se extraen los valores del DTO
-        const { envioId, riderId, calificacion, comentario } = createHistorialExitoDTO
+        const { envioId, usuarioId, riderId, calificacion, comentario } = createHistorialExitoDTO
 
 
         // Se utiliza un método estático de la entidad para crear una nueva instancia
-        const newHistorialExito = HistorialExito.create(crypto.randomUUID(), envioId, riderId, calificacion, comentario, new Date())
+        const newHistorialExito = HistorialExito.create(crypto.randomUUID(), envioId, usuarioId, riderId, calificacion, comentario, new Date())
 
         // Se llama al repositorio para persistir el nuevo usuario
         await this.repository.create(newHistorialExito)

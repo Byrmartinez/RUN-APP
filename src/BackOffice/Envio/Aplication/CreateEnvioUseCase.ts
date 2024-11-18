@@ -5,6 +5,7 @@ import { EnvioAlreadyExists } from '../Domain/Exceptions/EnvioAlreadyExists'
 export interface CreateEnvioDTO {
 
     usuarioId: string,
+    riderId: string,
     direccionOrigen: string,
     direccionDestino: string,
     descripcion: string,
@@ -32,12 +33,12 @@ export class CreateEnvioUseCase {
 
 
         // Se extraen los valores del DTO
-        const { usuarioId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const { usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal } = createEnvioDTO
 
 
         // Se utiliza un método estático de la entidad para crear una nueva instancia
-        const newEnvio = Envio.create(crypto.randomUUID(), usuarioId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const newEnvio = Envio.create(crypto.randomUUID(), usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal,
             new Date())
 

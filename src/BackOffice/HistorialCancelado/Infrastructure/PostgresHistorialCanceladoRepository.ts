@@ -15,17 +15,17 @@ export class PostgresHistorialCanceladoRepository implements HistorialCanceladoR
     }
 
     async create(historialCancelado: HistorialCancelado): Promise<HistorialCancelado> {
-        const { id, envioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion } = historialCancelado.mapToDTO()
+        const { id, envioId, usuarioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion } = historialCancelado.mapToDTO()
 
 
         const query = `
-            INSERT INTO historial_cancelado (id, id_envio, id_rider, motivo_cancelacion_rider, motivo_cancelacion_generador, fecha_cancelacion )
-            VALUES ($1, $2, $3, $4, $5, $6)
+            INSERT INTO historial_cancelado (id, id_envio, id_usuario, id_rider, motivo_cancelacion_rider, motivo_cancelacion_generador, fecha_cancelacion )
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
         `
         // const salt = await bcrypt.genSalt(10)
         //const hashedPassword = await bcrypt.hash(password, 10)
 
-        const values = [id, envioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion]
+        const values = [id, envioId, usuarioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion]
         await this.client.query(query, values)
         return historialCancelado
     }
@@ -42,6 +42,7 @@ export class PostgresHistorialCanceladoRepository implements HistorialCanceladoR
             return HistorialCancelado.create(
                 row.id,
                 row.id_envio,
+                row.id_usuario,
                 row.id_rider,
                 row.motivo_cancelacion_rider,
                 row.motivo_cancelacion_generador,
@@ -61,6 +62,7 @@ export class PostgresHistorialCanceladoRepository implements HistorialCanceladoR
         return HistorialCancelado.create(
             row.id,
             row.id_envio,
+            row.id_usuario,
             row.id_rider,
             row.motivo_cancelacion_rider,
             row.motivo_cancelacion_generador,
@@ -71,13 +73,13 @@ export class PostgresHistorialCanceladoRepository implements HistorialCanceladoR
 
 
     async update(historialCancelado: HistorialCancelado): Promise<void> {
-        const { id, envioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion } = historialCancelado.mapToDTO()
+        const { id, envioId, usuarioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion } = historialCancelado.mapToDTO()
         const query = `
             UPDATE historial_cancelado
-            SET id_envio = $2, id_rider = $3, motivo_cancelacion_rider = $4, motivo_cancelacion_generador = $5, fecha_cancelacion = $6
+            SET id_envio = $2, id_usuario= $3, id_rider = $4, motivo_cancelacion_rider = $5, motivo_cancelacion_generador = $6, fecha_cancelacion = $7
             WHERE id = $1
         `
-        const values = [id, envioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion]
+        const values = [id, envioId, usuarioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, fechaCancelacion]
         await this.client.query(query, values)
     }
 

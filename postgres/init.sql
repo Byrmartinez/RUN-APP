@@ -40,6 +40,7 @@ CREATE TABLE "datos_rider" (
 CREATE TABLE "envio" (
     "id" VARCHAR(250) NOT NULL,
     "id_usuario" VARCHAR(250) NOT NULL,
+    "id_rider" VARCHAR(250) NOT NULL,
     "direccion_origen" VARCHAR(250) NOT NULL,
     "direccion_destino" VARCHAR(250) NOT NULL,
     "descripcion" VARCHAR(250) NOT NULL,
@@ -56,6 +57,7 @@ CREATE TABLE "envio" (
 CREATE TABLE "historial_exito" (
     "id" VARCHAR(250) NOT NULL,
     "id_envio" VARCHAR(250) NOT NULL, 
+    "id_usuario" VARCHAR(250) NOT NULL,
     "id_rider" VARCHAR(250) NOT NULL,
     "calificacion" INT NOT NULL,
     "comentario" VARCHAR(250) NOT NULL, 
@@ -65,6 +67,7 @@ CREATE TABLE "historial_exito" (
 CREATE TABLE "historial_cancelado" (
     "id" VARCHAR(250) NOT NULL,
     "id_envio" VARCHAR(250) NOT NULL, 
+    "id_usuario" VARCHAR(250) NOT NULL,
     "id_rider" VARCHAR(250) NOT NULL,
     "motivo_cancelacion_rider" VARCHAR(250) NOT NULL, 
     "motivo_cancelacion_generador" VARCHAR(250) NOT NULL, 

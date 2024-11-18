@@ -5,6 +5,7 @@ import { HistorialCanceladoAlreadyExists } from '../Domain/Exceptions/HistorialC
 export interface CreateHistorialCanceladoDTO {
 
     envioId: string,
+    usuarioId: string,
     riderId: string,
     motivoCancelacionRider: string,
     motivoCancelacionGenerador: string,
@@ -26,11 +27,11 @@ export class CreateHistorialCanceladoUseCase {
 
 
         // Se extraen los valores del DTO
-        const { envioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador } = createHistorialCanceladoDTO
+        const { envioId, usuarioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador } = createHistorialCanceladoDTO
 
 
         // Se utiliza un método estático de la entidad para crear una nueva instancia
-        const newHistorialCancelado = HistorialCancelado.create(crypto.randomUUID(), envioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, new Date())
+        const newHistorialCancelado = HistorialCancelado.create(crypto.randomUUID(), envioId, usuarioId, riderId, motivoCancelacionRider, motivoCancelacionGenerador, new Date())
 
         // Se llama al repositorio para persistir el nuevo usuario
         await this.repository.create(newHistorialCancelado)

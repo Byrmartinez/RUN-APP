@@ -15,18 +15,18 @@ export class PostgresEnvioRepository implements EnvioRepository {
     }
 
     async create(envio: Envio): Promise<Envio> {
-        const { id, usuarioId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const { id, usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal, fechaEnvio } = envio.mapToDTO()
 
 
         const query = `
-            INSERT INTO envio (id, id_usuario, direccion_origen, direccion_destino, descripcion, distancia_km, estado, tipo_envio, costo, comision_aplicacion, comision_rider, valor_final, fecha_envio )
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+            INSERT INTO envio (id, id_usuario, id_rider, direccion_origen, direccion_destino, descripcion, distancia_km, estado, tipo_envio, costo, comision_aplicacion, comision_rider, valor_final, fecha_envio )
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
         `
         // const salt = await bcrypt.genSalt(10)
         //const hashedPassword = await bcrypt.hash(password, 10)
 
-        const values = [id, usuarioId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const values = [id, usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal, fechaEnvio]
         await this.client.query(query, values)
         return envio
@@ -45,6 +45,7 @@ export class PostgresEnvioRepository implements EnvioRepository {
             return Envio.create(
                 row.id,
                 row.id_usuario,
+                row.id_rider,
                 row.direccion_origen,
                 row.direccion_destino,
                 row.descripcion,
@@ -71,6 +72,7 @@ export class PostgresEnvioRepository implements EnvioRepository {
         return Envio.create(
             row.id,
             row.id_usuario,
+            row.id_rider,
             row.direccion_origen,
             row.direccion_destino,
             row.descripcion,
@@ -88,14 +90,14 @@ export class PostgresEnvioRepository implements EnvioRepository {
 
 
     async update(envio: Envio): Promise<void> {
-        const { id, usuarioId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const { id, usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal, fechaEnvio } = envio.mapToDTO()
         const query = `
             UPDATE envio
-            SET id_usuario = $2, direccion_origen = $3, direccion_destino = $4, descripcion = $5, distancia_km = $6, estado = $7, tipo_envio = $8, costo = $9, comision_aplicacion = $10, comision_rider =$11, valor_final =$12, fecha_envio =$13
+            SET id_usuario = $2, id_rider = $3, direccion_origen = $4, direccion_destino = $5, descripcion = $6, distancia_km = $7, estado = $8, tipo_envio = $9, costo = $10, comision_aplicacion = $11, comision_rider =$12, valor_final =$13, fecha_envio =$14
             WHERE id = $1
         `
-        const values = [id, usuarioId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const values = [id, usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal, fechaEnvio]
         await this.client.query(query, values)
     }

@@ -2,6 +2,7 @@ import { HistorialExitoRepository } from '../Domain/HistorialExitoRepository'
 
 import { HistorialExitoId } from '../Domain/ValueObjects/HistorialExitoId'
 import { EnvioId } from '../Domain/ValueObjects/EnvioId'
+import { UsuarioId } from '../Domain/ValueObjects/UsuarioId'
 import { RiderId } from '../Domain/ValueObjects/RiderId'
 import { Calificacion } from '../Domain/ValueObjects/Calificacion'
 import { Comentario } from '../Domain/ValueObjects/Comentario'
@@ -18,6 +19,7 @@ export class UpdateHistorialExitoUseCase {
         {
             id: string,
             envioId?: string,
+            usuarioId?: string,
             riderId?: string,
             calificacion?: number,
             comentario?: string
@@ -25,7 +27,7 @@ export class UpdateHistorialExitoUseCase {
     ): Promise<void> {
 
         // Extrae los valores del DTO
-        const { id, envioId, riderId, calificacion, comentario } = updateHistorialExitoDTO
+        const { id, envioId, usuarioId, riderId, calificacion, comentario } = updateHistorialExitoDTO
 
         // Usa el Value Object para validar el ID de usuario
         const historialExitoId = new HistorialExitoId(id)
@@ -38,6 +40,7 @@ export class UpdateHistorialExitoUseCase {
 
         // Actualiza los valores del usuario en memoria
         if (envioId) historialExito.envioId = new EnvioId(envioId)
+        if (usuarioId) historialExito.usuarioId = new UsuarioId(usuarioId)
         if (riderId) historialExito.riderId = new RiderId(riderId)
         if (calificacion) historialExito.calificacion = new Calificacion(calificacion)
         if (comentario) historialExito.comentario = new Comentario(comentario)

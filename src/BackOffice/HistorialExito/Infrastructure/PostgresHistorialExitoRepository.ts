@@ -15,17 +15,17 @@ export class PostgresHistorialExitoRepository implements HistorialExitoRepositor
     }
 
     async create(historialExito: HistorialExito): Promise<HistorialExito> {
-        const { id, envioId, riderId, calificacion, comentario, fechaEntrega } = historialExito.mapToDTO()
+        const { id, envioId, usuarioId, riderId, calificacion, comentario, fechaEntrega } = historialExito.mapToDTO()
 
 
         const query = `
-            INSERT INTO historial_exito (id, id_envio, id_rider, calificacion, comentario, fecha_entrega )
-            VALUES ($1, $2, $3, $4, $5, $6)
+            INSERT INTO historial_exito (id, id_envio, id_usuario, id_rider, calificacion, comentario, fecha_entrega )
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
         `
         // const salt = await bcrypt.genSalt(10)
         //const hashedPassword = await bcrypt.hash(password, 10)
 
-        const values = [id, envioId, riderId, calificacion, comentario, fechaEntrega]
+        const values = [id, envioId, usuarioId, riderId, calificacion, comentario, fechaEntrega]
         await this.client.query(query, values)
         return historialExito
     }
@@ -42,6 +42,7 @@ export class PostgresHistorialExitoRepository implements HistorialExitoRepositor
             return HistorialExito.create(
                 row.id,
                 row.id_envio,
+                row.id_usuario,
                 row.id_rider,
                 row.calificacion,
                 row.comentario,
@@ -61,6 +62,7 @@ export class PostgresHistorialExitoRepository implements HistorialExitoRepositor
         return HistorialExito.create(
             row.id,
             row.id_envio,
+            row.id_usuario,
             row.id_rider,
             row.calificacion,
             row.comentario,
@@ -71,13 +73,13 @@ export class PostgresHistorialExitoRepository implements HistorialExitoRepositor
 
 
     async update(historialExito: HistorialExito): Promise<void> {
-        const { id, envioId, riderId, calificacion, comentario, fechaEntrega } = historialExito.mapToDTO()
+        const { id, envioId, usuarioId, riderId, calificacion, comentario, fechaEntrega } = historialExito.mapToDTO()
         const query = `
             UPDATE historial_exito
-            SET id_envio = $2, id_rider = $3, calificacion = $4, comentario = $5, fecha_entrega = $6
+            SET id_envio = $2, id_usuario = $3, id_rider = $4, calificacion = $5, comentario = $6, fecha_entrega = $7
             WHERE id = $1
         `
-        const values = [id, envioId, riderId, calificacion, comentario, fechaEntrega]
+        const values = [id, envioId, usuarioId, riderId, calificacion, comentario, fechaEntrega]
         await this.client.query(query, values)
     }
 

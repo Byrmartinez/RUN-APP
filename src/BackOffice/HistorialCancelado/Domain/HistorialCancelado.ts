@@ -4,10 +4,12 @@ import { RiderId } from "./ValueObjects/RiderId"
 import { MotivoCancelacionRider } from "./ValueObjects/MotivoCancelacionRider"
 import { MotivoCancelacionGenerador } from "./ValueObjects/MotivoCancelacionGenerador"
 import { FechaCancelacion } from "./ValueObjects/FechaCancelacion"
+import { UsuarioId } from "./ValueObjects/UsuarioId"
 
 export class HistorialCancelado {
     id: HistorialCanceladoId
     envioId: EnvioId
+    usuarioId: UsuarioId
     riderId: RiderId
     motivoCancelacionRider: MotivoCancelacionRider
     motivoCancelacionGenerador: MotivoCancelacionGenerador
@@ -17,6 +19,7 @@ export class HistorialCancelado {
     private constructor(
         id: HistorialCanceladoId,
         envioId: EnvioId,
+        usuarioId: UsuarioId,
         riderId: RiderId,
         motivoCancelacionRider: MotivoCancelacionRider,
         motivoCancelacionGenerador: MotivoCancelacionGenerador,
@@ -24,6 +27,7 @@ export class HistorialCancelado {
     ) {
         this.id = id
         this.envioId = envioId
+        this.usuarioId = usuarioId
         this.riderId = riderId
         this.motivoCancelacionRider = motivoCancelacionRider
         this.motivoCancelacionGenerador = motivoCancelacionGenerador
@@ -33,6 +37,7 @@ export class HistorialCancelado {
     public static create(
         id: string,
         envioId: string,
+        usuarioId: string,
         riderId: string,
         motivoCancelacionRider: string,
         motivoCancelacionGenerador: string,
@@ -41,6 +46,7 @@ export class HistorialCancelado {
         return new HistorialCancelado(
             new HistorialCanceladoId(id),
             new EnvioId(envioId),
+            new UsuarioId(usuarioId),
             new RiderId(riderId),
             new MotivoCancelacionRider(motivoCancelacionRider),
             new MotivoCancelacionGenerador(motivoCancelacionGenerador),
@@ -54,6 +60,7 @@ export class HistorialCancelado {
         return {
             id: this.id.value,
             envioId: this.envioId.value,
+            usuarioId: this.usuarioId.value,
             riderId: this.riderId.value,
             motivoCancelacionRider: this.motivoCancelacionRider.value,
             motivoCancelacionGenerador: this.motivoCancelacionGenerador.value,

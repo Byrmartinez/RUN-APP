@@ -1,5 +1,6 @@
 import { EnvioId } from "./ValueObjects/EnvioId"
 import { UsuarioId } from "./ValueObjects/UsuarioId"
+import { RiderId } from "./ValueObjects/RiderId"
 import { DireccionOrigen } from "./ValueObjects/DireccionOrigen"
 import { DireccionDestino } from "./ValueObjects/DireccionDestino"
 import { Descripcion } from "./ValueObjects/Descripcion"
@@ -15,6 +16,7 @@ import { FechaEnvio } from "./ValueObjects/FechaEnvio"
 export class Envio {
     id: EnvioId
     usuarioId: UsuarioId
+    riderId: RiderId
     direccionOrigen: DireccionOrigen
     direccionDestino: DireccionDestino
     descripcion: Descripcion
@@ -31,6 +33,7 @@ export class Envio {
     private constructor(
         id: EnvioId,
         usuarioId: UsuarioId,
+        riderId: RiderId,
         direccionOrigen: DireccionOrigen,
         direccionDestino: DireccionDestino,
         descripcion: Descripcion,
@@ -45,6 +48,7 @@ export class Envio {
     ) {
         this.id = id
         this.usuarioId = usuarioId
+        this.riderId = riderId
         this.direccionOrigen = direccionOrigen
         this.direccionDestino = direccionDestino
         this.descripcion = descripcion
@@ -60,6 +64,7 @@ export class Envio {
     public static create(
         id: string,
         usuarioId: string,
+        riderId: string,
         direccionOrigen: string,
         direccionDestino: string,
         descripcion: string,
@@ -75,6 +80,7 @@ export class Envio {
         return new Envio(
             new EnvioId(id),
             new UsuarioId(usuarioId),
+            new RiderId(riderId),
             new DireccionOrigen(direccionOrigen),
             new DireccionDestino(direccionDestino),
             new Descripcion(descripcion),
@@ -95,6 +101,7 @@ export class Envio {
         return {
             id: this.id.value,
             usuarioId: this.usuarioId.value,
+            riderId: this.riderId.value,
             direccionOrigen: this.direccionOrigen.value,
             direccionDestino: this.direccionDestino.value,
             descripcion: this.descripcion.value,
