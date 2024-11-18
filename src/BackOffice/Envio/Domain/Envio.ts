@@ -1,6 +1,7 @@
 import { EnvioId } from "./ValueObjects/EnvioId"
 import { UsuarioId } from "./ValueObjects/UsuarioId"
 import { RiderId } from "./ValueObjects/RiderId"
+import { Contador } from "./ValueObjects/Contador"
 import { DireccionOrigen } from "./ValueObjects/DireccionOrigen"
 import { DireccionDestino } from "./ValueObjects/DireccionDestino"
 import { Descripcion } from "./ValueObjects/Descripcion"
@@ -17,6 +18,7 @@ export class Envio {
     id: EnvioId
     usuarioId: UsuarioId
     riderId: RiderId
+    contador: Contador
     direccionOrigen: DireccionOrigen
     direccionDestino: DireccionDestino
     descripcion: Descripcion
@@ -34,6 +36,7 @@ export class Envio {
         id: EnvioId,
         usuarioId: UsuarioId,
         riderId: RiderId,
+        contador: Contador,
         direccionOrigen: DireccionOrigen,
         direccionDestino: DireccionDestino,
         descripcion: Descripcion,
@@ -49,6 +52,7 @@ export class Envio {
         this.id = id
         this.usuarioId = usuarioId
         this.riderId = riderId
+        this.contador = contador
         this.direccionOrigen = direccionOrigen
         this.direccionDestino = direccionDestino
         this.descripcion = descripcion
@@ -65,6 +69,7 @@ export class Envio {
         id: string,
         usuarioId: string,
         riderId: string,
+        contador: number,
         direccionOrigen: string,
         direccionDestino: string,
         descripcion: string,
@@ -81,6 +86,7 @@ export class Envio {
             new EnvioId(id),
             new UsuarioId(usuarioId),
             new RiderId(riderId),
+            new Contador(contador),
             new DireccionOrigen(direccionOrigen),
             new DireccionDestino(direccionDestino),
             new Descripcion(descripcion),
@@ -102,6 +108,7 @@ export class Envio {
             id: this.id.value,
             usuarioId: this.usuarioId.value,
             riderId: this.riderId.value,
+            contador: this.contador.value,
             direccionOrigen: this.direccionOrigen.value,
             direccionDestino: this.direccionDestino.value,
             descripcion: this.descripcion.value,

@@ -41,6 +41,7 @@ CREATE TABLE "envio" (
     "id" VARCHAR(250) NOT NULL,
     "id_usuario" VARCHAR(250) NOT NULL,
     "id_rider" VARCHAR(250) NOT NULL,
+    "contador" NUMERIC(10) NOT NULL,
     "direccion_origen" VARCHAR(250) NOT NULL,
     "direccion_destino" VARCHAR(250) NOT NULL,
     "descripcion" VARCHAR(250) NOT NULL,

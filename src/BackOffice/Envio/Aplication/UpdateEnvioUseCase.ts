@@ -3,6 +3,7 @@ import { EnvioRepository } from '../Domain/EnvioRepository'
 import { EnvioId } from "../Domain/ValueObjects/EnvioId"
 import { UsuarioId } from "../Domain/ValueObjects/UsuarioId"
 import { RiderId } from '../Domain/ValueObjects/RiderId'
+import { Contador } from '../Domain/ValueObjects/Contador'
 import { DireccionOrigen } from "../Domain/ValueObjects/DireccionOrigen"
 import { DireccionDestino } from "../Domain/ValueObjects/DireccionDestino"
 import { Descripcion } from "../Domain/ValueObjects/Descripcion"
@@ -29,6 +30,7 @@ export class UpdateEnvioUseCase {
             id: string,
             usuarioId?: string,
             riderId?: string,
+            contador?: number,
             direccionOrigen?: string,
             direccionDestino?: string,
             descripcion?: string,
@@ -44,7 +46,7 @@ export class UpdateEnvioUseCase {
     ): Promise<void> {
 
         // Extrae los valores del DTO
-        const { id, usuarioId, riderId, direccionOrigen, direccionDestino, descripcion, distanciaKM,
+        const { id, usuarioId, riderId, contador, direccionOrigen, direccionDestino, descripcion, distanciaKM,
             estado, tipoEnvio, costo, comisionAplicacion, comisionRider, valorFinal } = updateEnvioDTO
 
         // Usa el Value Object para validar el ID de usuario
@@ -59,6 +61,7 @@ export class UpdateEnvioUseCase {
         // Actualiza los valores del usuario en memoria
         if (usuarioId) envio.usuarioId = new UsuarioId(usuarioId)
         if (riderId) envio.riderId = new RiderId(riderId)
+        if (contador) envio.contador = new Contador(contador)
         if (direccionOrigen) envio.direccionOrigen = new DireccionOrigen(direccionOrigen)
         if (direccionDestino) envio.direccionDestino = new DireccionDestino(direccionDestino)
         if (descripcion) envio.descripcion = new Descripcion(descripcion)
