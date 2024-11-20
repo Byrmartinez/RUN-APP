@@ -56,7 +56,7 @@ export class PostgresDatosPymeRepository implements DatosPymeRepository {
     }
 
     async getOneById(id: IdDatosPyme): Promise<DatosPyme | null> {
-        const query = 'SELECT * FROM datos_pyme WHERE id = $1'
+        const query = 'SELECT * FROM datos_pyme WHERE id_usuario = $1'
         const result = await this.client.query(query, [id.value])
         console.log(result)
         if (result.rows.length === 0) return null
