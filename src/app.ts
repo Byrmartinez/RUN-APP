@@ -14,7 +14,9 @@ import { ExpressHistorialCanceladoRouter } from './BackOffice/HistorialCancelado
 const app = express()
 app.use(express.json())
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://127.0.0.1:8100', 'http://localhost:8100'],
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://127.0.0.1:8100', 'http://localhost:8100', 'http://192.168.43.193:8100', 'http://192.168.43.1:8100',
+        'http://127.0.0.1:8101', 'http://localhost:8101', 'http://192.168.43.193:8101'
+    ],
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,
@@ -45,3 +47,6 @@ app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000')
 })
+/*app.listen(3000, '0.0.0.0', () => {
+    console.log('Server is running on http://0.0.0.0:3000')
+})*/

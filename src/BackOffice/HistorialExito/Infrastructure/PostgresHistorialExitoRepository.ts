@@ -53,7 +53,7 @@ export class PostgresHistorialExitoRepository implements HistorialExitoRepositor
     }
 
     async getOneById(id: HistorialExitoId): Promise<HistorialExito | null> {
-        const query = 'SELECT * FROM historial_exito WHERE id = $1'
+        const query = 'SELECT * FROM historial_exito WHERE id_envio = $1'
         const result = await this.client.query(query, [id.value])
         console.log(result)
         if (result.rows.length === 0) return null
